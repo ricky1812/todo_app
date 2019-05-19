@@ -16,6 +16,9 @@ class Todo(db.Model):
 	def __repr__(self):
 		return f"User('{self.id},{self.task}')"
 
+db.drop_all()
+db.create_all()
+
 
 
 @app.route('/', methods=["GET","POST"])
