@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 
 app=Flask(__name__)
@@ -12,6 +13,7 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
 	id=db.Column(db.Integer, primary_key=True, nullable=False)
 	task=db.Column(db.Text, nullable=False)
+	date_time=db.Column(db.DateTime, unique=True)
 
 	def __repr__(self):
 		return f"User('{self.id},{self.task}')"
@@ -27,7 +29,11 @@ def home():
 		print(request.form)
 		
 		tasklist=Todo(task=request.form.get("task"))
+		date_string=request.form.get("datetime")
+		date_object = datetime.strptime(date_string, "%d %B, %Y")
+		datetime_list=Todo(task=date_object)
 		db.session.add(tasklist)
+		db.session.add(datetime_list)
 		db.session.commit()
 	tasks=Todo.query.all()
 
