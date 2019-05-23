@@ -27,13 +27,11 @@ db.create_all()
 def home():
 	if request.form:
 		print(request.form)
-		
-		tasklist=Todo(task=request.form.get("task"))
 		date_string=request.form.get("datetime")
-		date_object = datetime.strptime(date_string, "%d %B, %Y")
-		datetime_list=Todo(task=date_object)
-		db.session.add(tasklist)
-		db.session.add(datetime_list)
+		date_object = datetime.strptime(date_string, "%Y-%m-%dT%H:%M")
+		td=Todo(task=request.form.get("task"),date_time=date_object)
+		datetime_list=Todo(date_time=date_object)
+		db.session.add(td)
 		db.session.commit()
 	tasks=Todo.query.all()
 
@@ -46,6 +44,12 @@ def update():
 	oldtask=request.form.get("oldtask")
 	tasklist=Todo.query.filter_by(task=oldtask).first()
 	tasklist.task=newtask
+	date_string1=request.form.get("newdate")
+	date_string2=request.form.get("olddate")
+	newdate=datetime.strptime(date_string1, "%Y-%m-%d %H:%M:%S")
+	olddate=datetime.strptime(date_string2, "%Y-%m-%d %H:%M:%S")
+	datetime_list=Todo.query.filter_by(date_time=olddate).first()
+	datetime_list.date_time=newdate
 	db.session.commit()
 	return redirect("/")
    
