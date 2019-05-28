@@ -63,6 +63,11 @@ def delete():
 	db.session.commit()
 	return redirect("/")
 
+@app.route("/tasklist")
+def display():
+	tasks=Todo.query.all()
+	return render_template('tasklist.html',tasks=tasks)
+
 
 
 if __name__=="__main__":

@@ -1,0 +1,12 @@
+<html>
+<head><title>TASKS</title></head>
+<body>
+	<h1>TASKS</h1>
+	<ul class="list-group list-group-flush">
+	{% for todo in tasks %}
+		
+		<li class="list-group-item">{{todo.task}}</li>
+		
+	{% endfor %}
+</body>
+</html>

@@ -1,26 +1,53 @@
 <html>
-<head><title>TODO</title></head>
+<head>
+	<title>TODO</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	  
+</head>
 <body>
-	<h1>Enter Task</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm"></div>
+			<div class="col-sm">
+			<h1>TODO APP</h1>
+			<br>
+			<br>
+		
+		
+	<h5>Enter Task</h5>
+
 	<form method="POST" action="">
-		<input type="text" name="task">
-		<input type="datetime-local" name="datetime">
-		<input type="Submit" value="Add">
+		
+		<div class="form-group">
+			<input type="text" class="form-control" name="task" id="task" placeholder="your task">
+		</div>
+		<div class="form-group">
+			<input type="datetime-local" class="form-control" name="datetime" id="datetime">
+		</div>
+		<input type="Submit" value="Add" id="add">
 	</form>
-	<h1>TASKS</h1>
+	<h5>TASKS</h5>
+	<ul class="list-group list-group-flush">
 	{% for todo in tasks %}
-		<p><h3>task</h3>
-		{{todo.task}}</p> 
-		<p><h3>time</h3>
-		{{todo.date_time}}</p>
+		
+		
 
 
 		<form method="POST" action="./update" style="display: inline">
-              <input type="hidden" value="{{todo.task}}" name="oldtask">
-              <input type="text" value="{{todo.task}}" name="newtask">
+			<div class="form-group">
+              <input type="hidden" class="form-control" value="{{todo.task}}" name="oldtask">
+          </div>
+          	<div class="form-group">
+              <input type="text" class="form-control" value="{{todo.task}}" name="newtask">
+          </div>
               <input type="hidden" value="{{todo.date_time}}" name="olddate">
-              <input type="text" value="{{todo.date_time}}" name="newdate">
+             <div class="form-group">
+              <input type="text" class="form-control" value="{{todo.date_time}}" name="newdate">
+          </div>
+          	
               <input type="submit" value="Update">
+
           </form>
 
 
@@ -29,5 +56,11 @@
               <input type="submit" value="Delete">
             </form>
 	{% endfor %}
+	<script src="{{ url_for('static', filename = 'script.js') }}"></script>
+</div>
+<div class="col-sm"></div>
+</div>
+</div>
 </body>
+
 </html>
