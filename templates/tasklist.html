@@ -1,12 +1,23 @@
 <html>
-<head><title>TASKS</title></head>
+<head><title>TASKS</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 <body>
 	<h1>TASKS</h1>
-	<ul class="list-group list-group-flush">
+	<ul class="list-group list-group-flush" id="task-list">
 	{% for todo in tasks %}
 		
-		<li class="list-group-item">{{todo.task}}</li>
+		<li class="list-group-item" id="task">{{todo.task}}  {{todo.date_time}}</li>
+		Date Time are-
+		<li class="list-group-item" id="deadline-hour">Hour is-{{todo.date_time.hour}}</li>
+		<li class="list-group-item" id="deadline-minute">minute is-{{todo.date_time.minute}}</li>
+		<li class="list-group-item" id="deadline-second">second is-{{todo.date_time.second}}</li>
+		<li class="list-group-item" id="deadline-day">day is-{{todo.date_time.day}}</li>
+		<li class="list-group-item" id="deadline-month">month is-{{todo.date_time.month}}</li>
+		<li class="list-group-item" id="deadline-year">year is-{{todo.date_time.year}}</li>
 		
 	{% endfor %}
+</ul>
 </body>
+<script src="{{ url_for('static', filename = 'script.js') }}"></script>
 </html>
