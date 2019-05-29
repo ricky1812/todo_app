@@ -28,7 +28,7 @@ def home():
 	if request.form:
 		print(request.form)
 		date_string=request.form.get("datetime")
-		date_object = datetime.strptime(date_string, "%Y-%m-%dT%H:%M")
+		date_object = datetime.strptime(date_string, "%m/%d/%Y %H:%M %p")
 		td=Todo(task=request.form.get("task"),date_time=date_object)
 		datetime_list=Todo(date_time=date_object)
 		db.session.add(td)

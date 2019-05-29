@@ -28,4 +28,4 @@ function notification()
 	alert(text);
 }
 
-setInterval(checkDeadlines, 1000);
+setInterval(checkdeadlines, 1000);
