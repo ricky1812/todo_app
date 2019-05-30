@@ -1,0 +1,9 @@
+{
+    "sqltools.connections": [
+        {
+            "database": ".\\todolist.db",
+            "dialect": "SQLite",
+            "name": "dd"
+        }
+    ]
+}

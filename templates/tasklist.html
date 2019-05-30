@@ -1,13 +1,19 @@
 <html>
-<head><title>TASKS</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<head>
+	<title>TASKS</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
 	<h1>TASKS</h1>
 	<ul class="list-group list-group-flush" id="task-list">
-	{% for todo in tasks %}
-		
-		<li class="list-group-item" id="task">{{todo.task}}  {{todo.date_time}}</li>
+		{% for todo in tasks %}
+
+		<li class="list-group-item" id="task">{{todo.task}} {{todo.date_time}}</li>
+		<li class="list-group-item" id="date">{{todo.date_time}}</li>
+
 		Date Time are-
 		<li class="list-group-item" id="deadline-hour">Hour is-{{todo.date_time.hour}}</li>
 		<li class="list-group-item" id="deadline-minute">minute is-{{todo.date_time.minute}}</li>
@@ -15,9 +21,22 @@
 		<li class="list-group-item" id="deadline-day">day is-{{todo.date_time.day}}</li>
 		<li class="list-group-item" id="deadline-month">month is-{{todo.date_time.month}}</li>
 		<li class="list-group-item" id="deadline-year">year is-{{todo.date_time.year}}</li>
-		
-	{% endfor %}
-</ul>
+
+		{% endfor %}
+	</ul>
+
+	<script>
+		var task_name = []
+		var task_date = []
+		{% for todo in tasks %}
+		task_name.push('{{todo.task| safe}}')
+		task_date.push('{{todo.date_time| safe}}')
+		{% endfor %}
+		alert(task_name);
+		alert(task_date)
+	
+	</script>
 </body>
-<script src="{{ url_for('static', filename = 'script.js') }}"></script>
+<script src="{{ url_for('static', filename = 'script.js') }}"></script> 
+
 </html>

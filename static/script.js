@@ -3,22 +3,51 @@ var db;
 var newItem = [{ task: "", hours: 0, minutes: 0, day: 0, month: "", year: 0}];
 var tasklist=document.getElementById('task-list');
 var task=document.getElementById('task');
-var hours=document.getElementById('deadline-hour');
-var minutes=document.getElementById('deadline-minute');
-var seconds=document.getElementById('deadline-second');
-var day = document.getElementById('deadline-day');
-var month = document.getElementById('deadline-month');
-var year = document.getElementById('deadline-year');
+for(i=0;i<task_date.length;i++){
+    var taskdate=new Date(task_date[i]);
+    console.log(taskdate);
+    var minute= taskdate.getMinutes();
+    var hour = taskdate.getHours();
+    var day = taskdate.getDate();
+    var month = taskdate.getMonth();
+    var year = taskdate.getFullYear();
+
+}
+
+
+
+	
+
+
 
 
 function checkdeadlines()
 {
 	var now=new Date();
+    console.log(now);
 	var minuteCheck = now.getMinutes();
     var hourCheck = now.getHours();
     var dayCheck = now.getDate();
     var monthCheck = now.getMonth();
     var yearCheck = now.getFullYear();
+    var secondCheck=now.getSeconds();
+    for(i=0;i<task_date.length;i++)
+    {
+        var taskdate=new Date(task_date[i]);
+        console.log(taskdate);
+        var minute= taskdate.getMinutes();
+        var hour = taskdate.getHours();
+        var day = taskdate.getDate();
+        var month = taskdate.getMonth();
+        var year = taskdate.getFullYear();
+        var second= taskdate.getSeconds();
+    
+        if(minute==minuteCheck && day==dayCheck && hour==hourCheck && month==monthCheck && year==yearCheck && second==secondCheck )
+        {
+            var text = 'HEY! Your task "' + task_name[i] + '" needs to be done".';
+            alert(text);
+        }
+    }
 }
 
 

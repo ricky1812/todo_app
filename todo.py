@@ -3,7 +3,6 @@ from flask import render_template, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todolist.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -66,7 +65,7 @@ def delete():
 @app.route("/tasklist")
 def display():
 	tasks=Todo.query.all()
-	return render_template('tasklist.html',tasks=tasks)
+	return render_template('tasklist.html', tasks=tasks)
 
 
 

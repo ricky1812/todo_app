@@ -28,6 +28,7 @@
 		<div class="form-group">
 			<label class="control-label">Enter Task</label>
 			<input type="text" class="form-control" name="task" id="task" placeholder="your task">
+			<div id="message"></div>
 		</div>
 		<div class="form-group">
                   <label class="control-label">Time</label>
@@ -41,10 +42,26 @@
 		
 		<input type="Submit" value="Add" id="add">
 		<script>
+			// This is the script to get the value of input text
+			$("#task").keydown(function() {
+				$("#message").text($("#task").val())
+			})
+			///////////////////////////////////////////////////
   $(function () {
     $('#datetimepicker').datetimepicker();
  });
 </script>
+<script>
+		var task_name = []
+		var task_date = []
+		{% for todo in tasks %}
+		task_name.push('{{todo.task| safe}}')
+		task_date.push('{{todo.date_time| safe}}')
+		{% endfor %}
+		alert(task_name);
+		alert(task_date)
+	
+	</script>
 	</form>
 	<h5>TASKS</h5>
 	
@@ -81,5 +98,6 @@
 </div>
 </div>
 </body>
+<script src="{{ url_for('static', filename = 'script.js') }}"></script> 
 
 </html>
